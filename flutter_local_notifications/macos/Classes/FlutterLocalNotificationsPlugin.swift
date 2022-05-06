@@ -84,9 +84,9 @@ public class FlutterLocalNotificationsPlugin: NSObject, FlutterPlugin, UNUserNot
     @available(OSX 10.14, *)
     public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         var options: UNNotificationPresentationOptions = []
-        let presentAlert = notification.request.content.userInfo[MethodCallArguments.presentAlert] as! Bool
-        let presentSound = notification.request.content.userInfo[MethodCallArguments.presentSound] as! Bool
-        let presentBadge = notification.request.content.userInfo[MethodCallArguments.presentBadge] as! Bool
+        let presentAlert = (notification.request.content.userInfo[MethodCallArguments.presentAlert] ?? false) as! Bool
+        let presentSound = (notification.request.content.userInfo[MethodCallArguments.presentSound] ?? false) as! Bool
+        let presentBadge = (notification.request.content.userInfo[MethodCallArguments.presentBadge] ?? false) as! Bool
         if presentAlert {
             options.insert(.alert)
         }
